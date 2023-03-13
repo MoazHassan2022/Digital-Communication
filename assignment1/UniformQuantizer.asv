@@ -1,6 +1,0 @@
-function q_ind = UniformQuantizer(in_val, n_bits, xmax, m)
-L = 2^n_bits; % quantization levels
-delta = 2*xmax/L; % quantization interval width
-offset = (m == 0) *
-levels = linspace(-xmax+delta, xmax-delta, L);
-end
