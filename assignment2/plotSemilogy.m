@@ -1,5 +1,4 @@
 function [] = plotSemilogy(eNoDB, theoryBER, simBER, filterName)
-    figure
     semilogy(eNoDB,theoryBER,'','Linewidth',1);
     hold on
     semilogy(eNoDB,simBER,'','Linewidth',1);
@@ -8,6 +7,5 @@ function [] = plotSemilogy(eNoDB, theoryBER, simBER, filterName)
     %legend('Theoretical', 'Simulated');
     xlabel('Eb/No, dB');
     ylabel('Bit Error Rate');
-    title(strcat('Bit Error Rate for ', filterName));
+    title(strcat('Bit Error Rate for', ' ', filterName));
 end
-

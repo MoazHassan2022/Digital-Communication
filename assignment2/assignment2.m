@@ -2,7 +2,7 @@ close all
 
 % Set the size of the bits array
 % TODO: make this 10^5
-bitsSize = 15;
+bitsSize = 10^5;
 
 % Generate a random array of zeros and ones
 bits = randi([0,1],1,bitsSize);
@@ -38,11 +38,18 @@ eNoDB = -10:1:20;
 matchedFilter = ones(1, 10);
 [simBERMatched, filteredOutputMatched, sampledOutputMatched, gtAfterNoiseMatched] = getBER(bits, gt, matchedFilter, bitsSize);
 
-% disp(simBERMatched);
+figure;
+plot(tGt, filteredOutputMatched),
+xlabel('Time'); ylabel('y(t)');
+title('After Matched Filter');
+
+disp(simBERMatched);
 
 % Get theoretical BER
 theoryBERMatched = 0.5*erfc(sqrt(10.^(eNoDB/10)));
 
+figure
+subplot(3,1, 1);
 plotSemilogy(eNoDB, theoryBERMatched, simBERMatched, 'Matched Filter');
 
 % 2- h(t) = delta(t)
@@ -51,14 +58,26 @@ deltaFilter = zeros(1, 10);
 deltaFilter(5) = 1;
 [simBERDelta, filteredOutputDelta, sampledOutputDelta, gtAfterNoiseDelta] = getBER(bits, gt, deltaFilter, bitsSize);
 
-% disp(simBERDelta);
+disp(simBERDelta);
+
+% Get theoretical BER
+theoryBERDelta = 0.5*erfc(sqrt(10.^(eNoDB/10)));
+
+subplot(3,1, 2);
+plotSemilogy(eNoDB, theoryBERDelta, simBERDelta, 'Delta Filter');
+
 
 % 3- h(t) = right-angled triangle with height = sqrt(5), width = 10
 triYValues = linspace(0, sqrt(3), 10);
+triYValues = triYValues/ norm(triYValues);
 [simBERTri, filteredOutputTri, sampledOutputTri, gtAfterNoiseTri] = getBER(bits, gt, triYValues, bitsSize);
 
-% disp(simBERTri);
+disp(simBERTri);
+% Get theoretical BER
+theoryBERTri = 0.5*erfc((sqrt(3) / 2) * sqrt(10.^(eNoDB/10)));
 
+subplot(3,1, 3);
+plotSemilogy(eNoDB, theoryBERTri, simBERTri, 'Triangle Filter');
 
 % figure;
 % plot(tGt, gtAfterNoise),

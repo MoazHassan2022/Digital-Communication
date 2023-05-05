@@ -1,7 +1,11 @@
 function [BER, filteredOutput, sampledOutput, gtAfterNoise] = getBER(bits, gt, filter, bitsSize)
     BER = zeros(1, 31);
     i = 1;
-
+    
+    % Normalize to make the signal with unit energy
+    % onePulse = ones(1, 10);
+    % gt = gt / norm(onePulse);
+    
     for eNoDB = -10:1:20
         % Add AWGN noise with snr = E / (No/2)
         gtAfterNoise = awgn(gt, 2*eNoDB, 'measured');
@@ -25,7 +29,7 @@ function [BER, filteredOutput, sampledOutput, gtAfterNoise] = getBER(bits, gt, f
         sampledOutput = filteredOutput(10:10:(10*bitsSize));
 
         % Take a decision
-        receivedBits = double((sampledOutput >= 0));
+        receivedBits = double((sampledOutput > 0));
 
         % Counting errors
         BER(i) = sum(bits ~= receivedBits);

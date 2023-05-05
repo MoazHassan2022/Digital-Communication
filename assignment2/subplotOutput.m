@@ -3,5 +3,5 @@ function [] = subplotOutput(time, output, samplingPoints, filterName, index, col
     plot(time, output, color, samplingPoints, output(samplingPoints), shape);
     xlabel('Time');
     ylabel('Output');
-    title(strcat('Output After ', filterName)); 
+    title(strcat('Output After', ' ', filterName)); 
 end
