@@ -26,4 +26,9 @@ function plotSignalWithNoise(testCase, s1_v1, s1_v2, s2_v1, s2_v2, s1, s2, phi1,
         scatter(r2_v1, r2_v2, [], [0.3010 0.7450 0.9330]);
     end
 
-    legend("Signal 1", "Signal 2", "Signal
+    legend("Signal 1", "Signal 2", "Signal 1 with Noise", "Signal 2 with Noise");
+    xlabel('Phi1');
+    ylabel('Phi2');
+    title('Signal Points with Noise with E/sigma^2 = ' + string(EoSigma(testCase)) + 'dB');
+    grid on;
+end
