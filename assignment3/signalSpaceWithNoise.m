@@ -1,7 +1,7 @@
 function r = signalSpaceWithNoise(s, sigma)
-	% Generate AWGN
-	noise = sigma * randn(1, length(s));
+    % Generate additive white Gaussian noise (AWGN)
+    noise = sigma * randn(size(s));
 
-	% Add noise to the signals
-	r = s + noise;
+    % Add noise to the signal
+    r = s + noise;
 end
