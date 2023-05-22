@@ -1,4 +1,4 @@
-function r = signal_space_with_noise(s, sigma)
+function r = signalSpaceWithNoise(s, sigma)
 	% Generate AWGN
 	noise = sigma * randn(1, length(s));
 

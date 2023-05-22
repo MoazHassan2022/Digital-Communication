@@ -12,7 +12,7 @@ s2(1) = 0; s2(end) = 0;
 
 % =================================================================
 % REQUIREMENTS 1:
-[phi1, phi2] = GM_Bases(s1, s2);
+[phi1, phi2] = calculateGM_Bases(s1, s2);
 
 % Plot the signals
 figure('Name', 'Basis Functions', 'NumberTitle', 'off');
@@ -34,15 +34,15 @@ grid on;
 
 % =================================================================
 % REQUIREMENTS 2:
-[s1_v1, s1_v2] = signal_space(s1, phi1, phi2);
-[s2_v1, s2_v2] = signal_space(s2, phi1, phi2);
+[s1_v1, s1_v2] = signalSpace(s1, phi1, phi2);
+[s2_v1, s2_v2] = signalSpace(s2, phi1, phi2);
 
 % Plot the signal
 figure('Name', 'Signal Space Representation', 'NumberTitle', 'off');
 
-plot([0 s1_v1], [0 s1_v2], '-o', 'MarkerIndices', [2 2], 'LineWidth', 2);
+plot([0 s1_v1], [0 s1_v2], '-o', 'LineWidth', 2);
 hold on;
-plot([0 s2_v1], [0 s2_v2], '-o', 'MarkerIndices', [2 2], 'LineWidth', 2);
+plot([0 s2_v1], [0 s2_v2], '-o', 'LineWidth', 2);
 
 legend('Signal 1', 'Signal 2');
 xlabel('Phi1');
@@ -54,7 +54,7 @@ grid on;
 % =================================================================
 % REQUIREMENTS 3:
 % Function calls to plot the signals with noise
-plot_signal_with_noise(1, s1_v1, s1_v2, s2_v1, s2_v2, s1, s2, phi1, phi2);
-plot_signal_with_noise(2, s1_v1, s1_v2, s2_v1, s2_v2, s1, s2, phi1, phi2);
-plot_signal_with_noise(3, s1_v1, s1_v2, s2_v1, s2_v2, s1, s2, phi1, phi2);
+plotSignalWithNoise(1, s1_v1, s1_v2, s2_v1, s2_v2, s1, s2, phi1, phi2);
+plotSignalWithNoise(2, s1_v1, s1_v2, s2_v1, s2_v2, s1, s2, phi1, phi2);
+plotSignalWithNoise(3, s1_v1, s1_v2, s2_v1, s2_v2, s1, s2, phi1, phi2);
 % =================================================================
